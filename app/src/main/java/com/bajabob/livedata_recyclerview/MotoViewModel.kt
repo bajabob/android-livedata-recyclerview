@@ -13,12 +13,30 @@ class MotoViewModel : ViewModel() {
      */
     private val dataset = mutableListOf(
             MotoListItem(MotoListType.HEADER, HeaderViewModel("Cool Bikes")),
-            MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("Cafe", R.drawable.dirt_cafe)),
-            MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("Cruiser", R.drawable.cruiser)),
+
+            MotoListItem(
+                    MotoListType.CLICKABLE_ENTRY,
+                    ClickableEntryViewModel("Cafe", R.drawable.dirt_cafe)
+            ),
+            MotoListItem(
+                    MotoListType.CLICKABLE_ENTRY,
+                    ClickableEntryViewModel("Cruiser", R.drawable.cruiser)
+            ),
+
             MotoListItem(MotoListType.HEADER, HeaderViewModel("Even Cooler Bikes")),
-            MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("BMW GS 1200 (dirt)", R.drawable.gs)),
-            MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("BMW GS 1200 (road)", R.drawable.road_gs)),
-            MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("Yamaha T7 Concept", R.drawable.t7))
+
+            MotoListItem(
+                    MotoListType.CLICKABLE_ENTRY,
+                    ClickableEntryViewModel("BMW GS 1200 (dirt)", R.drawable.gs)
+            ),
+            MotoListItem(
+                    MotoListType.CLICKABLE_ENTRY,
+                    ClickableEntryViewModel("BMW GS 1200 (road)", R.drawable.road_gs)
+            ),
+            MotoListItem(
+                    MotoListType.CLICKABLE_ENTRY,
+                    ClickableEntryViewModel("Yamaha T7 Concept", R.drawable.t7)
+            )
     )
 
     // mutable in view model
@@ -32,7 +50,10 @@ class MotoViewModel : ViewModel() {
         for (i in 1..50) {
             async {
                 delay(i * 1000)
-                dataset.add(MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("Yamaha T7 Concept #$i", R.drawable.t7)))
+                dataset.add(
+                        MotoListItem(MotoListType.CLICKABLE_ENTRY,
+                        ClickableEntryViewModel("Yamaha T7 Concept #$i", R.drawable.t7))
+                )
                 motoListItems.postValue(dataset)
             }
         }

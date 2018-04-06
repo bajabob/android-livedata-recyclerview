@@ -8,9 +8,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 
 /**
- * RecyclerView.Adapter -> listens for changes to data, handles instantiating/management of concrete views
+ * RecyclerView.Adapter -> listens for changes to data, handles instantiating/management of
+ *  concrete views
  */
-class MotoListAdapter(lifecycle: LifecycleOwner, val dataset: LiveData<List<MotoListItem<Any>>>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MotoListAdapter(
+        lifecycle: LifecycleOwner,
+        val dataset: LiveData<List<MotoListItem<Any>>>
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     init {
         dataset.observe(lifecycle, Observer {
@@ -23,14 +27,16 @@ class MotoListAdapter(lifecycle: LifecycleOwner, val dataset: LiveData<List<Moto
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        val v = LayoutInflater.from(parent.context).inflate(MotoListType.values()[viewType].layoutId, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(
+                MotoListType.values()[viewType].layoutId, parent, false)
 
         return MotoListType.values()[viewType].createNewViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        val viewModel = dataset.value?.get(position)?.data ?: throw IllegalStateException("Null MotoListItem not expected")
+        val viewModel = dataset.value?.get(position)?.data
+                ?: throw IllegalStateException("Null MotoListItem not expected")
 
         when (holder) {
             is Bindable -> holder.onBind(viewModel)
