@@ -12,27 +12,27 @@ class MotoViewModel : ViewModel() {
      * default dataset
      */
     private val dataset = mutableListOf(
-            MainActivity.MotoListItem(MainActivity.MotoListType.HEADER, MainActivity.HeaderViewModel("Cool Bikes")),
-            MainActivity.MotoListItem(MainActivity.MotoListType.CLICKABLE_ENTRY, MainActivity.ClickableEntryViewModel("Cafe", R.drawable.dirt_cafe)),
-            MainActivity.MotoListItem(MainActivity.MotoListType.CLICKABLE_ENTRY, MainActivity.ClickableEntryViewModel("Cruiser", R.drawable.cruiser)),
-            MainActivity.MotoListItem(MainActivity.MotoListType.HEADER, MainActivity.HeaderViewModel("Even Cooler Bikes")),
-            MainActivity.MotoListItem(MainActivity.MotoListType.CLICKABLE_ENTRY, MainActivity.ClickableEntryViewModel("BMW GS 1200 (dirt)", R.drawable.gs)),
-            MainActivity.MotoListItem(MainActivity.MotoListType.CLICKABLE_ENTRY, MainActivity.ClickableEntryViewModel("BMW GS 1200 (road)", R.drawable.road_gs)),
-            MainActivity.MotoListItem(MainActivity.MotoListType.CLICKABLE_ENTRY, MainActivity.ClickableEntryViewModel("Yamaha T7 Concept", R.drawable.t7))
+            MotoListItem(MotoListType.HEADER, HeaderViewModel("Cool Bikes")),
+            MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("Cafe", R.drawable.dirt_cafe)),
+            MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("Cruiser", R.drawable.cruiser)),
+            MotoListItem(MotoListType.HEADER, HeaderViewModel("Even Cooler Bikes")),
+            MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("BMW GS 1200 (dirt)", R.drawable.gs)),
+            MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("BMW GS 1200 (road)", R.drawable.road_gs)),
+            MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("Yamaha T7 Concept", R.drawable.t7))
     )
 
     // mutable in view model
-    private val motoListItems = MutableLiveData<List<MainActivity.MotoListItem<Any>>>()
+    private val motoListItems = MutableLiveData<List<MotoListItem<Any>>>()
 
     // immutable outside of view model
-    fun motoListLiveData(): LiveData<List<MainActivity.MotoListItem<Any>>> = motoListItems
+    fun motoListLiveData(): LiveData<List<MotoListItem<Any>>> = motoListItems
 
     init {
         // simulate async data changes over some amount of time (db, remote data source, etc.)
         for (i in 1..50) {
             async {
                 delay(i * 1000)
-                dataset.add(MainActivity.MotoListItem(MainActivity.MotoListType.CLICKABLE_ENTRY, MainActivity.ClickableEntryViewModel("Yamaha T7 Concept #$i", R.drawable.t7)))
+                dataset.add(MotoListItem(MotoListType.CLICKABLE_ENTRY, ClickableEntryViewModel("Yamaha T7 Concept #$i", R.drawable.t7)))
                 motoListItems.postValue(dataset)
             }
         }
