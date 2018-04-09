@@ -50,7 +50,7 @@ class MotoViewModel : ViewModel() {
         for (i in 1..50) {
             async {
                 delay(i * 1000)
-                dataset.add(
+                dataset.add( if(i%2==0)i else dataset.size - i,
                         MotoListItem(MotoListType.CLICKABLE_ENTRY,
                         ClickableEntryViewModel("Yamaha T7 Concept #$i", R.drawable.t7))
                 )
