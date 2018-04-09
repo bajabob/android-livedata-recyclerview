@@ -13,6 +13,10 @@ class HeaderItem constructor(private val header: HeaderViewModel) : Item() {
     }
 
     override fun isSameAs(other: com.xwray.groupie.Item<*>?): Boolean {
+        return equals(other)
+    }
+
+    override fun equals(other: Any?): Boolean {
         return if (other is HeaderItem) other.header.equals(header) else false
     }
 }

@@ -15,6 +15,10 @@ class ClickableItem constructor(private val item: ClickableEntryViewModel) : Ite
     }
 
     override fun isSameAs(other: com.xwray.groupie.Item<*>?): Boolean {
+        return equals(other)
+    }
+
+    override fun equals(other: Any?): Boolean {
         return if (other is ClickableItem) item.equals(other.item) else false
     }
 }

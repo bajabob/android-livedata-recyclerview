@@ -23,9 +23,7 @@ class MainActivity : AppCompatActivity() {
         val bikes = Section()
         groupAdapter.add(bikes)
         viewModel.motoListLiveData().observe(this, Observer {
-            val update = mutableListOf<Group>()
-            it?.map { update.add(it.view.createNewViewHolder(it.data)) }
-            bikes.update(update)
+            bikes.update( it?.map {it.getView()} ?: listOf<Group>())
         })
 
         list.adapter = groupAdapter

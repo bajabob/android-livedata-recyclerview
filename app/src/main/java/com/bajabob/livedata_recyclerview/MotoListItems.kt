@@ -25,6 +25,8 @@ data class MotoListItem<out Any>(
         val data: Any
 )
 
+fun MotoListItem<Any>.getView() : Group { return this.view.createNewViewHolder(this.data) }
+
 /**
  * ViewModels -> data as received from single source of truth (db, or remote). Should only
  *  contain data that maps to views.
