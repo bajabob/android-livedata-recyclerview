@@ -14,21 +14,7 @@ class ClickableItem constructor(private val item: ClickableEntryViewModel) : Ite
         viewHolder.item_name.text = item.name
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (other is ClickableItem) {
-            return item.equals(other.item)
-        }
-        return false
-    }
-
     override fun isSameAs(other: com.xwray.groupie.Item<*>?): Boolean {
-        if (other is ClickableItem) {
-            return item.equals(other.item)
-        }
-        return false
-    }
-
-    override fun hashCode(): Int {
-        return item.hashCode()
+        return if (other is ClickableItem) item.equals(other.item) else false
     }
 }

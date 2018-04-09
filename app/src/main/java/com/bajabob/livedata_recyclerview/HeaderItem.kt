@@ -12,21 +12,7 @@ class HeaderItem constructor(private val header: HeaderViewModel) : Item() {
         viewHolder.header.text = header.name
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (other is HeaderItem) {
-            return other.header.equals(header)
-        }
-        return false
-    }
-
     override fun isSameAs(other: com.xwray.groupie.Item<*>?): Boolean {
-        if (other is HeaderItem) {
-            return other.header.equals(header)
-        }
-        return false
-    }
-
-    override fun hashCode(): Int {
-        return header.hashCode()
+        return if (other is HeaderItem) other.header.equals(header) else false
     }
 }
