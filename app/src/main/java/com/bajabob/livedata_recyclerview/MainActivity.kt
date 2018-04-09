@@ -24,14 +24,7 @@ class MainActivity : AppCompatActivity() {
         groupAdapter.add(bikes)
         viewModel.motoListLiveData().observe(this, Observer {
             val update = mutableListOf<Group>()
-            it?.map {
-                when (it.view) {
-                    MotoListType.CLICKABLE_ENTRY ->
-                        update.add(ClickableItem(it.data as ClickableEntryViewModel))
-                    MotoListType.HEADER ->
-                    update.add(HeaderItem(it.data as HeaderViewModel))
-                }
-            }
+            it?.map { update.add(it.view.createNewViewHolder(it.data)) }
             bikes.update(update)
         })
 

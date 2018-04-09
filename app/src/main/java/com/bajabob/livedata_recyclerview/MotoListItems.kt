@@ -2,16 +2,19 @@ package com.bajabob.livedata_recyclerview
 
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
+import com.xwray.groupie.Group
 
 /**
  * different types of data our list can represent
  */
 enum class MotoListType(
         // the layout to inflate
-        @LayoutRes val layoutId: Int
+        @LayoutRes val layoutId: Int,
+        // given a view, creates a new instance of Bindable
+        val createNewViewHolder: (Any) -> Group
 ) {
-    HEADER(R.layout.view_holder_header),
-    CLICKABLE_ENTRY(R.layout.view_holder_clickable_entry)
+    HEADER(R.layout.view_holder_header, { v -> HeaderItem(v as HeaderViewModel)}),
+    CLICKABLE_ENTRY(R.layout.view_holder_clickable_entry, { v -> ClickableItem(v as ClickableEntryViewModel)})
 }
 
 /**
