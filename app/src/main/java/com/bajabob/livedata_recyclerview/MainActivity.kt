@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
@@ -20,10 +19,19 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(MotoViewModel::class.java)
         val groupAdapter = GroupAdapter<ViewHolder>()
-        val bikes = Section()
-        groupAdapter.add(bikes)
+        val coolBikes = Section()
+        coolBikes.setHeader(HeaderItem("Cool Bikes"))
+        coolBikes.setHideWhenEmpty(true)
+        val coolerBikes = Section()
+        coolerBikes.setHeader(HeaderItem("Cooler Bikes"))
+        coolerBikes.setHideWhenEmpty(true)
+        groupAdapter.add(coolBikes)
+        groupAdapter.add(coolerBikes)
         viewModel.motoListLiveData().observe(this, Observer {
-            bikes.update( it?.map {it.getView()} ?: listOf<Group>())
+            it?.let {
+                coolerBikes.update(it.filter { it.isCool() }.map { ClickableItem(it)})
+                coolBikes.update(it.filter { !it.isCool() }.map { ClickableItem(it)})
+            }
         })
         list.adapter = groupAdapter
     }

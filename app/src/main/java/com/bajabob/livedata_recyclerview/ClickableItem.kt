@@ -13,3 +13,4 @@ class ClickableItem(model: ClickableEntryViewModel) : BaseItem<ClickableEntryVie
         viewHolder.item_name.text = model.name
     }
 }
+
