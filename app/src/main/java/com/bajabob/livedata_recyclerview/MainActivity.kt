@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.motoListLiveData().observe(this, Observer {
             bikes.update( it?.map {it.getView()} ?: listOf<Group>())
         })
-
         list.adapter = groupAdapter
     }
 }
