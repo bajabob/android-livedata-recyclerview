@@ -1,11 +1,12 @@
 package com.bajabob.livedata_recyclerview
 
 import com.squareup.picasso.Picasso
+import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.view_holder_pug.*
 
 
-class PugItem(model: PugInABlanket) : BaseItem<PugInABlanket>(model) {
+class PugItem(val model: PugInABlanket) : Item() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
         val pugPath = "http://picsum.photos/200?image=${model.pugNo}"
         val picasso = Picasso.get()

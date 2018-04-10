@@ -8,14 +8,14 @@ import kotlinx.android.synthetic.main.view_holder_header.*
 
 
 abstract class BaseViewModel : Group {
-    val delegateItem : BaseItem<out Any> by lazy {
+    val delegateItem : com.xwray.groupie.kotlinandroidextensions.Item by lazy {
         DelegateItemFactory.getItem(this)
     }
 
-    abstract fun getItemFactory () : (BaseViewModel) -> BaseItem<out Any>
+    abstract fun getItemFactory () : (BaseViewModel) -> com.xwray.groupie.kotlinandroidextensions.Item
     
     object DelegateItemFactory {
-        fun getItem(me: BaseViewModel) : BaseItem<out Any> {
+        fun getItem(me: BaseViewModel) : com.xwray.groupie.kotlinandroidextensions.Item {
             return me.getItemFactory()(me)
         }
     }
@@ -40,7 +40,7 @@ abstract class BaseViewModel : Group {
         return delegateItem.registerGroupDataObserver(groupDataObserver)
     }
 
-    class EmptyItem : BaseItem<String>("EMPTY") {
+    class EmptyItem(val model: String = "EMPTY") : com.xwray.groupie.kotlinandroidextensions.Item() {
         override fun bind(viewHolder: ViewHolder, position: Int) {
             viewHolder.header.text = model
         }
