@@ -7,18 +7,16 @@ import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.view_holder_header.*
 
 
-open class ShitBalls : Group {
+abstract class BaseViewModel : Group {
     val delegateItem : BaseItem<out Any> by lazy {
         DelegateItemFactory.getItem(this)
     }
 
+    abstract fun getItemFactory () : (BaseViewModel) -> BaseItem<out Any>
+    
     object DelegateItemFactory {
-        fun getItem(me: Any) : BaseItem<out Any> {
-            when (me) {
-                is ClickableEntryViewModel ->
-                    return ClickableItem(me)
-            }
-            return EmptyItem()
+        fun getItem(me: BaseViewModel) : BaseItem<out Any> {
+            return me.getItemFactory()(me)
         }
     }
 

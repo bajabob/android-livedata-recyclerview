@@ -12,11 +12,11 @@ class MotoViewModel : ViewModel() {
      * default dataset
      */
     private val dataset = mutableListOf(
-                    ClickableEntryViewModel("Cafe", R.drawable.dirt_cafe),
-                    ClickableEntryViewModel("Cruiser", R.drawable.cruiser),
-                    ClickableEntryViewModel("BMW GS 1200 (dirt)", R.drawable.gs),
-                    ClickableEntryViewModel("BMW GS 1200 (road)", R.drawable.road_gs),
-                    ClickableEntryViewModel("Yamaha T7 Concept", R.drawable.t7)
+            ClickableEntryViewModel("Cafe", R.drawable.dirt_cafe),
+            ClickableEntryViewModel("Cruiser", R.drawable.cruiser),
+            ClickableEntryViewModel("BMW GS 1200 (dirt)", R.drawable.gs),
+            ClickableEntryViewModel("BMW GS 1200 (road)", R.drawable.road_gs),
+            ClickableEntryViewModel("Yamaha T7 Concept", R.drawable.t7)
     )
 
     // mutable in view model
