@@ -13,6 +13,7 @@ class MotoViewModel : ViewModel() {
      */
     private val dataset = mutableListOf(
             ClickableEntryViewModel("Cafe", R.drawable.dirt_cafe),
+            PugInABlanket(1025),
             ClickableEntryViewModel("Cruiser", R.drawable.cruiser),
             ClickableEntryViewModel("BMW GS 1200 (dirt)", R.drawable.gs),
             ClickableEntryViewModel("BMW GS 1200 (road)", R.drawable.road_gs),
@@ -20,10 +21,10 @@ class MotoViewModel : ViewModel() {
     )
 
     // mutable in view model
-    private val motoListItems = MutableLiveData<List<ClickableEntryViewModel>>()
+    private val motoListItems = MutableLiveData<List<BaseViewModel>>()
 
     // immutable outside of view model
-    fun motoListLiveData(): LiveData<List<ClickableEntryViewModel>> = motoListItems
+    fun motoListLiveData(): LiveData<List<BaseViewModel>> = motoListItems
 
     init {
         // simulate async data changes over some amount of time (db, remote data source, etc.)
