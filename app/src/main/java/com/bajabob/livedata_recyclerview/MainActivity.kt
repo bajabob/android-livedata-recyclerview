@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         groupAdapter.add(coolerBikes)
         viewModel.motoListLiveData().observe(this, Observer {
             it?.let {
-                coolerBikes.update(it.filter { it.isCool() }.map { ClickableItem(it)})
-                coolBikes.update(it.filter { !it.isCool() }.map { ClickableItem(it)})
+                coolBikes.update(it.filter{!it.isCooler()})
+                coolerBikes.update(it.filter{it.isCooler()})
             }
         })
         list.adapter = groupAdapter
