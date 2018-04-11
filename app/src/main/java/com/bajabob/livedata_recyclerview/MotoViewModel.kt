@@ -38,4 +38,9 @@ class MotoViewModel : ViewModel() {
             }
         }
     }
+    
+    fun addAPug() {
+        dataset.add((Math.random() * dataset.size).toInt(), PugInABlanket(1025))
+        motoListItems.postValue(dataset)
+    }
 }

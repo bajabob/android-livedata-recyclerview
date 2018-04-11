@@ -29,10 +29,15 @@ class MainActivity : AppCompatActivity() {
         groupAdapter.add(coolerBikes)
         viewModel.motoListLiveData().observe(this, Observer {
             it?.let {
-                coolBikes.update(it.filter{it is ClickableEntryViewModel && !it.isCooler()})
-                coolerBikes.update(it.filter{it is PugInABlanket || (it is ClickableEntryViewModel && it.isCooler())})
+                coolBikes.update(it.filter{it is PugInABlanket || (it is ClickableEntryViewModel && !it.isCooler())})
+                coolerBikes.update(it.filter{(it is ClickableEntryViewModel && it.isCooler())})
             }
         })
+        groupAdapter.setOnItemClickListener { item, view -> 
+            if (item is PugItem) {
+                viewModel.addAPug()
+            }
+        }
         list.adapter = groupAdapter
     }
 }
