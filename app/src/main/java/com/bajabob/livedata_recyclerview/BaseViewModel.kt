@@ -8,13 +8,13 @@ import kotlinx.android.synthetic.main.view_holder_header.*
 
 
 abstract class BaseViewModel : Group {
-    val delegateItem : com.xwray.groupie.kotlinandroidextensions.Item by lazy {
+    private val delegateItem : com.xwray.groupie.kotlinandroidextensions.Item by lazy {
         DelegateItemFactory.getItem(this)
     }
 
-    abstract fun getItemFactory () : (BaseViewModel) -> com.xwray.groupie.kotlinandroidextensions.Item
+    protected abstract fun getItemFactory () : (BaseViewModel) -> com.xwray.groupie.kotlinandroidextensions.Item
     
-    object DelegateItemFactory {
+    private object DelegateItemFactory {
         fun getItem(me: BaseViewModel) : com.xwray.groupie.kotlinandroidextensions.Item {
             return me.getItemFactory()(me)
         }
